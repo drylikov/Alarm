@@ -1,0 +1,12 @@
+#!/bin/bash
+FILE=$HOME/media/internet/jamz.mp4
+
+if test \! -f "$FILE"; then
+    mkdir -p `dirname "$FILE"`
+    youtube-dl https://www.youtube.com/watch?v=1cAdJ3Ns1gE -o $FILE
+fi
+
+at "$*"
+amixer set Master unmute
+amixer set Master 100%
+mplayer -vo none "$FILE"
